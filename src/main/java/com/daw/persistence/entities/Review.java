@@ -1,7 +1,6 @@
 package com.daw.persistence.entities;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
