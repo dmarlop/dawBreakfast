@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import com.daw.persistence.entities.Establecimiento;
 import com.daw.services.EstablecimientoService;
@@ -32,7 +32,7 @@ public class EstablecimientoController {
 	}
 	
 	@GetMapping("/{idEstablecimiento}")
-	public ResponseEntity<Establecimiento> getEstablecimiento(@PathVariable("idEstablecimiento") int idEstablecimiento){
+	public ResponseEntity<Establecimiento> getEstablecimiento(@PathVariable int idEstablecimiento){
 		
 		if(this.establecimientoService.findById(idEstablecimiento).isEmpty()) {
 			return ResponseEntity.notFound().build();
@@ -50,7 +50,7 @@ public class EstablecimientoController {
 	}
 	
 	@PutMapping("/{idEstablecimiento}")
-	public ResponseEntity<Establecimiento> establecimiento(@PathVariable("idEstablecimiento") int idEstablecimiento, @RequestBody Establecimiento establecimiento){
+	public ResponseEntity<Establecimiento> establecimiento(@PathVariable int idEstablecimiento, @RequestBody Establecimiento establecimiento){
 		if(idEstablecimiento != establecimiento.getId()) {
 			return ResponseEntity.notFound().build();
 		} else if(this.establecimientoService.findById(idEstablecimiento).isEmpty()) {
@@ -63,7 +63,7 @@ public class EstablecimientoController {
 	
 	
 	@DeleteMapping("/{idCliente}")
-	public ResponseEntity<Establecimiento> delete(@PathVariable("idCliente") int idCliente){
+	public ResponseEntity<Establecimiento> delete(@PathVariable int idCliente){
 		if(this.establecimientoService.delete(idCliente)) {
 			return ResponseEntity.ok().build();
 		}
@@ -71,5 +71,13 @@ public class EstablecimientoController {
 			return ResponseEntity.notFound().build();
 		}
 		
+	}
+	@GetMapping("/puntuacion")
+	public ResponseEntity<List<Establecimiento>> getByPuntuacion(){
+		return ResponseEntity.ok(this.establecimientoService.findByPuntuacion());
+	}
+	@GetMapping("/ubicacion")
+	public ResponseEntity<List<Establecimiento>> getByUbicacion(@RequestParam String ubicacion){
+		return ResponseEntity.ok(this.establecimientoService.findByUbicacion(ubicacion));
 	}
 }

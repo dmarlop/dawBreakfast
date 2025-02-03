@@ -49,4 +49,10 @@ public class EstablecimientoService {
 		return this.establecimientoCrudRepository.existsById(idEstablecimiento);
 	}
 
+	public List<Establecimiento> findByPuntuacion(){
+		return this.establecimientoCrudRepository.findAllByOrderByPuntuacionDesc();
+	}
+	public List<Establecimiento> findByUbicacion(String nombre){
+		return this.establecimientoCrudRepository.findByUbicacionContaining(nombre);
+	}
 }
