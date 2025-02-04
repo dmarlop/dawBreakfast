@@ -24,10 +24,10 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "id_usuario", nullable = false)
+	@Column(name = "id_usuario")
 	private int idUsuario;
 	
-	@Column(name = "id_desayuno", nullable = false)
+	@Column(name = "id_desayuno")
 	private int idDesayuno;
 	
 	private LocalDateTime fecha = LocalDateTime.now();
@@ -41,11 +41,11 @@ public class Review {
 	private String comentarios;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_usuario",  insertable = false, updatable = false)
+	@JoinColumn(name = "id_usuario", referencedColumnName = "id", insertable = false, updatable = false)
 	private Usuario usuario;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_desayuno",  insertable = false, updatable = false)
+	@JoinColumn(name = "id_desayuno", referencedColumnName = "id", insertable = false, updatable = false)
 	private Desayuno desayuno;
 	
 
