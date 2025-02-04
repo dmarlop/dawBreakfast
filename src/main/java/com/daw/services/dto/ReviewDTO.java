@@ -19,4 +19,5 @@ public class ReviewDTO {
 	private String imagen;
 	private int puntuacion;
 	private String comentarios;
+	
 }

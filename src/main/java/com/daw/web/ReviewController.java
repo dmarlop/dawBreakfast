@@ -50,18 +50,45 @@ public class ReviewController {
 		return new ResponseEntity<ReviewDTO>(this.reviewService.save(review), HttpStatus.CREATED);
 	}
 	
+	
+	
 	@PutMapping("/{idReview}")
-	public ResponseEntity<ReviewDTO> actualizarReview(@PathVariable("idReview") int idReview, @RequestBody Review review){
+	public ResponseEntity<ReviewDTO> actualiza(@PathVariable int idReview,@RequestBody Review review){
 		if(idReview != review.getId()) {
 			return ResponseEntity.badRequest().build();
 		}
 		if(!this.reviewService.exists(idReview)) {
 			return ResponseEntity.notFound().build();
 		}
+		
+		desayunoService.actualizarPuntuacion(review.getIdDesayuno());
 		return ResponseEntity.ok(this.reviewService.update(review));
 	}
 	
+	@GetMapping("/recientes")
+	public ResponseEntity<List<ReviewDTO>> recientes(){
+		return ResponseEntity.ok(this.reviewService.orderByFechaDesc());
+	}
 	
+	@GetMapping("/antiguas")
+	public ResponseEntity<List<ReviewDTO>> antiguas(){
+		return ResponseEntity.ok(this.reviewService.orderByFechaAsc());
+	}
 	
+	@GetMapping("/puntuacion")
+	public ResponseEntity<List<ReviewDTO>> puntuacion(){
+		return ResponseEntity.ok(this.reviewService.orderByPuntuacionDesc());
+	}
 
+	@GetMapping("/fecha/{idDesayuno}")
+	public ResponseEntity<List<ReviewDTO>> getFechaDesayuno(@PathVariable int idDesayuno){
+		return ResponseEntity.ok(this.reviewService.orderByFechaDesayuno(idDesayuno));
+	}
+
+	@GetMapping("/puntuacion/{idDesayuno}")
+	public ResponseEntity<List<ReviewDTO>> getPuntuacionDesayuno(@PathVariable int idDesayuno){
+		return ResponseEntity.ok(this.reviewService.orderByPuntuacionAscDesayuno(idDesayuno));
+	}
+
+	
 }

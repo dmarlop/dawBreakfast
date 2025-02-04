@@ -48,7 +48,7 @@ public class ReviewService {
 			this.reviewRepository.deleteById(id);
 			this.desayunoService.actualizarPuntuacion(id);
 			return true;
-			
+
 		}
 		return false;
 	}
@@ -64,7 +64,7 @@ public class ReviewService {
 		if (review.getImagen() == null) {
 			review.setImagen("https://i.pinimg.com/736x/6d/7a/43/6d7a43e03c4a75a218a47bb6fd5bfcd0.jpg");
 		}
-		if(review.getFecha()==null) {
+		if (review.getFecha() == null) {
 			review.setFecha(LocalDateTime.now());
 		}
 		save.setUsuario(u);
@@ -74,27 +74,103 @@ public class ReviewService {
 	}
 
 	public ReviewDTO update(Review review) {
-		this.desayunoService.actualizarPuntuacion(review.getId());
-		return ReviewMapper.toDto(this.reviewRepository.save(review));
+		// Recuperamos la Review existente para mantener sus relaciones y evitar
+		// sobrescribirlas
+		Review Review = this.reviewRepository.findById(review.getId()).get();
+
+		// Actualizamos los campos modificables
+		if (review.getPuntuacion() > 5 || review.getPuntuacion() < 0) {
+			throw new IllegalArgumentException("La puntuación será entera entre 0 y cinco");
+		}
+		Review.setPuntuacion(review.getPuntuacion());
+		Review.setComentarios(review.getComentarios());
+		Review.setPrecio(review.getPrecio());
+
+		if (review.getFecha() != null) {
+			Review.setFecha(review.getFecha());
+		}
+
+		if (review.getImagen() != null) {
+			Review.setImagen(review.getImagen());
+		} else {
+			Review.setImagen("https://i.pinimg.com/736x/6d/7a/43/6d7a43e03c4a75a218a47bb6fd5bfcd0.jpg");
+		}
+
+		// Reasignamos el Desayuno y el Usuario para mantener la consistencia
+		Desayuno d = this.desayunoService.getById(review.getIdDesayuno());
+		Usuario u = this.usuarioService.getById(review.getIdUsuario()).get();
+
+		Review.setDesayuno(d);
+		Review.setUsuario(u);
+
+		this.desayunoService.actualizarPuntuacion(review.getIdDesayuno());
+
+		return ReviewMapper.toDto(this.reviewRepository.save(Review));
 	}
 
-	public List<Review> orderByFechaDesc() {
-		return this.reviewRepository.findAllByOrderByFechaDesc();
+	public List<ReviewDTO> orderByFechaDesc() {
+		List<Review> reviews = this.reviewRepository.findAllByOrderByFechaDesc();
+
+		List<ReviewDTO> reviewDTOs = new ArrayList<>();
+
+		for (Review review : reviews) {
+
+			ReviewDTO dto = ReviewMapper.toDto(review);
+			reviewDTOs.add(dto);
+		}
+
+		return reviewDTOs;
 	}
 
-	public List<Review> orderByFechaAsc() {
-		return this.reviewRepository.findAllByOrderByFechaAsc();
+	public List<ReviewDTO> orderByFechaAsc() {
+		List<Review> reviews = this.reviewRepository.findAllByOrderByFechaAsc();
+		List<ReviewDTO> reviewDTOs = new ArrayList<>();
+
+		for (Review review : reviews) {
+
+			ReviewDTO dto = ReviewMapper.toDto(review);
+			reviewDTOs.add(dto);
+		}
+
+		return reviewDTOs;
 	}
 
-	public List<Review> orderByPuntuacionDesc() {
-		return this.reviewRepository.findAllByOrderByPuntuacionDesc();
+	public List<ReviewDTO> orderByPuntuacionDesc() {
+		List<Review> reviews = this.reviewRepository.findAllByOrderByPuntuacionDesc();
+		List<ReviewDTO> reviewDTOs = new ArrayList<>();
+
+		for (Review review : reviews) {
+
+			ReviewDTO dto = ReviewMapper.toDto(review);
+			reviewDTOs.add(dto);
+		}
+
+		return reviewDTOs;
 	}
 
-	public List<Review> orderByPuntuacionAscDesayuno(int idDesayuno) {
-		return this.reviewRepository.findByIdDesayunoOrderByPuntuacionDesc(idDesayuno);
+	public List<ReviewDTO> orderByPuntuacionAscDesayuno(int idDesayuno) {
+		List<Review> reviews = this.reviewRepository.findByIdDesayunoOrderByPuntuacionDesc(idDesayuno);
+		List<ReviewDTO> reviewDTOs = new ArrayList<>();
+
+		for (Review review : reviews) {
+
+			ReviewDTO dto = ReviewMapper.toDto(review);
+			reviewDTOs.add(dto);
+		}
+
+		return reviewDTOs;
 	}
 
-	public List<Review> orderByFechaDesayuno(int idDesayuno) {
-		return this.reviewRepository.findByIdDesayunoOrderByFechaDesc(idDesayuno);
+	public List<ReviewDTO> orderByFechaDesayuno(int idDesayuno) {
+		List<Review> reviews = this.reviewRepository.findByIdDesayunoOrderByFechaDesc(idDesayuno);
+		List<ReviewDTO> reviewDTOs = new ArrayList<>();
+
+		for (Review review : reviews) {
+
+			ReviewDTO dto = ReviewMapper.toDto(review);
+			reviewDTOs.add(dto);
+		}
+
+		return reviewDTOs;
 	}
 }
