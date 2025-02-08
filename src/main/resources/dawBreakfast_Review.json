@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "f4119e81-5849-447e-aaa3-c8f85f3044d8",
+		"name": "DawBreakfastReview",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35165790"
+	},
+	"item": [
+		{
+			"name": "getAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"idPedido\": 1,\r\n  \"idPizza\": 3,\r\n  \"cantidad\": 2.0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/dawbreakfast/api/review",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"review"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getById",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/dawbreakfast/api/review/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"review",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idUsuario\": 1,\r\n    \"idDesayuno\": 2,\r\n    \"precio\": 3.5,\r\n    \"imagen\": \"imagenes/review1.jpg\",\r\n    \"puntuacion\": 2,\r\n    \"comentarios\": \"El café estaba excelente, y la tostada bien crujiente.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/dawbreakfast/api/review",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"review"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"idUsuario\": 1,\r\n    \"idDesayuno\": 2,\r\n    \"precio\": 3.5,\r\n    \"imagen\": \"imagenes/review1.jpg\",\r\n    \"puntuacion\": 2,\r\n    \"comentarios\": \"El café estaba excelente, y la tostada bien crujiente.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/dawbreakfast/api/review/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"review",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/dawbreakfast/api/review/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"review",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recientes",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/dawbreakfast/api/review/recientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"review",
+						"recientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "antiguas",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/dawbreakfast/api/review/antiguas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"review",
+						"antiguas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "puntuacion",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/dawbreakfast/api/review/puntuacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"review",
+						"puntuacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fechaDesayuno",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/dawbreakfast/api/review/fecha/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"review",
+						"fecha",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "puntuacionDesayuno",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/dawbreakfast/api/review/puntuacion/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"review",
+						"puntuacion",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

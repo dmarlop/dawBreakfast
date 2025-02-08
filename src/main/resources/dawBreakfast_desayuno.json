@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "1fbade07-c4b2-4923-82e2-e29489bc93d7",
+		"name": "Dawbreakfast",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35089284"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/dawbreakfast/api/desayuno",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/dawbreakfast/api/desayuno/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"desayuno",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/dawbreakfast/api/desayuno/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/dawbreakfast/api/desayuno/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"desayuno",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/dawbreakfast/api/desayuno",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/dawbreakfast/api/desayuno",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"desayuno"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/dawbreakfast/api/desayuno",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/dawbreakfast/api/desayuno/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"desayuno",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/dawbreakfast/api/desayuno/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/dawbreakfast/api/desayuno/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"desayuno",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/dawbreakfast/api/desayuno/1/imagen",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/dawbreakfast/api/desayuno/1/imagen",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"desayuno",
+						"1",
+						"imagen"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

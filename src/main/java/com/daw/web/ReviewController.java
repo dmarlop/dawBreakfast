@@ -35,6 +35,11 @@ public class ReviewController {
 		return ResponseEntity.ok(this.reviewService.getAll());
 	}
 	
+	@GetMapping("/{idReview}")
+	public ResponseEntity <ReviewDTO> getbyId(@PathVariable int idReview){
+		return ResponseEntity.ok(this.reviewService.getById(idReview));
+	}
+	
 	@DeleteMapping("/{idReview}")
 	public ResponseEntity<Desayuno> delete(@PathVariable int idReview) {
 		if(this.reviewService.exists(idReview)) {
