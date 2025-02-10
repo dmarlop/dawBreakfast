@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.daw.persistence.entities.Desayuno;
 import com.daw.services.DesayunoService;
-
+@RestController
 @RequestMapping("/desayuno")
 public class DesayunoController {
 
@@ -46,6 +47,8 @@ public class DesayunoController {
 	}
 	@PostMapping
 	public ResponseEntity<Desayuno> crearDesayuno(@RequestBody Desayuno desayuno){
+		
+		
 		return new ResponseEntity<Desayuno>(this.desayunoService.save(desayuno), HttpStatus.CREATED);
 	}
 	

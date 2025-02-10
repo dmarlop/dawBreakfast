@@ -18,6 +18,9 @@ import com.daw.services.mapper.ReviewMapper;
 public class ReviewService {
 	@Autowired
 	private ReviewCrudRepository reviewRepository;
+	
+	@Autowired
+	private EstablecimientoService establecimientoService;
 
 	@Autowired
 	private DesayunoService desayunoService;
@@ -47,6 +50,7 @@ public class ReviewService {
 		if (this.reviewRepository.existsById(id)) {
 			this.reviewRepository.deleteById(id);
 			this.desayunoService.actualizarPuntuacion(id);
+			
 			return true;
 
 		}
@@ -70,15 +74,15 @@ public class ReviewService {
 		save.setUsuario(u);
 		save.setDesayuno(d);
 		this.desayunoService.actualizarPuntuacion(review.getIdDesayuno());
+		this.establecimientoService.actualizarPuntuacion(review.getDesayuno().getIdEstablecimiento());
 		return ReviewMapper.toDto(save);
 	}
 
 	public ReviewDTO update(Review review) {
-		// Recuperamos la Review existente para mantener sus relaciones y evitar
-		// sobrescribirlas
+		
 		Review Review = this.reviewRepository.findById(review.getId()).get();
 
-		// Actualizamos los campos modificables
+		
 		if (review.getPuntuacion() > 5 || review.getPuntuacion() < 0) {
 			throw new IllegalArgumentException("La puntuación será entera entre 0 y cinco");
 		}
@@ -96,7 +100,7 @@ public class ReviewService {
 			Review.setImagen("https://i.pinimg.com/736x/6d/7a/43/6d7a43e03c4a75a218a47bb6fd5bfcd0.jpg");
 		}
 
-		// Reasignamos el Desayuno y el Usuario para mantener la consistencia
+		
 		Desayuno d = this.desayunoService.getById(review.getIdDesayuno());
 		Usuario u = this.usuarioService.getById(review.getIdUsuario()).get();
 
@@ -104,10 +108,14 @@ public class ReviewService {
 		Review.setUsuario(u);
 
 		this.desayunoService.actualizarPuntuacion(review.getIdDesayuno());
-
+		this.establecimientoService.actualizarPuntuacion(review.getDesayuno().getIdEstablecimiento());
 		return ReviewMapper.toDto(this.reviewRepository.save(Review));
 	}
 
+	
+	
+	
+	
 	public List<ReviewDTO> orderByFechaDesc() {
 		List<Review> reviews = this.reviewRepository.findAllByOrderByFechaDesc();
 
@@ -173,4 +181,8 @@ public class ReviewService {
 
 		return reviewDTOs;
 	}
+	
+	public List<Review> findByIdDesayuno(int idDesayuno){
+		return this.reviewRepository.findByIdDesayuno(idDesayuno);
+	};
 }

@@ -7,14 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.daw.persistence.crud.EstablecimientoCrudRepository;
-
+import com.daw.persistence.entities.Desayuno;
 import com.daw.persistence.entities.Establecimiento;
+import com.daw.persistence.entities.Review;
 
 @Service
 public class EstablecimientoService {
 	
 	@Autowired
 	public EstablecimientoCrudRepository establecimientoCrudRepository;
+	
+
 	
 	public List<Establecimiento> findAll(){
 		return this.establecimientoCrudRepository.findAll();
@@ -55,4 +58,30 @@ public class EstablecimientoService {
 	public List<Establecimiento> findByUbicacion(String nombre){
 		return this.establecimientoCrudRepository.findByUbicacionContaining(nombre);
 	}
-}
+	
+	public void actualizarPuntuacion(int idEstablecimiento) {
+		 Optional<Establecimiento> optionalEstablecimiento = establecimientoCrudRepository.findById(idEstablecimiento);
+		    
+		    if (optionalEstablecimiento.isPresent()) {
+		        Establecimiento establecimiento = optionalEstablecimiento.get();
+		
+		
+		double puntuacion= 0;
+		int contador=0;
+		
+		for(Desayuno desayuno : establecimiento.getDesayunos()) {
+			puntuacion+=desayuno.getPuntuacion();
+			contador++;
+		}
+		if(contador>0) {
+			puntuacion= puntuacion/contador;
+		}else {
+			puntuacion=0;
+		}
+		establecimiento.setPuntuacion(puntuacion);
+		this.establecimientoCrudRepository.save(establecimiento);
+		    }
+	}
+	
+	}
+
