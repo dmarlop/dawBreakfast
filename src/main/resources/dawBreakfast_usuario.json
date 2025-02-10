@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "7f710f20-53f6-48ed-a26b-2ed3dc3b0953",
+		"name": "dawBreakfast",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35197067"
+	},
+	"item": [
+		{
+			"name": "obtener todos los usuarios",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8084/dawbreakfast/api/usuarios",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener usuario por id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8084/dawbreakfast/api/usuarios/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear usuario",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"lola\",\r\n    \"email\": \"lola@email.com\",\r\n    \"password\": \"666666\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8084/dawbreakfast/api/usuarios",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modificar un usuario",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"id\": 3,\r\n    \"username\": \"lola\",\r\n    \"email\": \"lola12@email.com\",\r\n    \"password\": \"666666\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8084/dawbreakfast/api/usuarios/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"usuarios",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "borrar usuario",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8084/dawbreakfast/api/usuarios/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"usuarios",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modificar contraseña",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/dawbreakfast/api/usuarios/3/cambiar-password?nuevaPassword=1234\n",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"dawbreakfast",
+						"api",
+						"usuarios",
+						"3",
+						"cambiar-password"
+					],
+					"query": [
+						{
+							"key": "nuevaPassword",
+							"value": "1234\n"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
