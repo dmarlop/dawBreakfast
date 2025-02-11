@@ -72,6 +72,7 @@ public class EstablecimientoController {
 		}
 		
 	}
+	
 	@GetMapping("/puntuacion")
 	public ResponseEntity<List<Establecimiento>> getByPuntuacion(){
 		return ResponseEntity.ok(this.establecimientoService.findByPuntuacion());

@@ -29,12 +29,14 @@ public class EstablecimientoService {
 	}
 	
 	public Establecimiento save (Establecimiento establecimiento){
-		
+		Establecimiento est = establecimientoCrudRepository.findById(establecimiento.getId()).get();
+		establecimiento.setPuntuacion(est.getPuntuacion());
 		return this.establecimientoCrudRepository.save(establecimiento);
+		
 	}
 	
 	public Establecimiento create (Establecimiento establecimiento){
-		
+		establecimiento.setPuntuacion(0);
 		return this.establecimientoCrudRepository.save(establecimiento);
 	}
 	

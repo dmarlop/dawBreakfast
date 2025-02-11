@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.daw.persistence.entities.Usuario;
 import com.daw.services.UsuarioService;
+import com.daw.services.dto.PasswordDTO;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -56,14 +57,18 @@ public class UsuarioController {
         return ResponseEntity.notFound().build();
     }
 
-    @PatchMapping("/{idUsuario}/cambiar-password")
-    public ResponseEntity<Usuario> changePassword(@PathVariable int idUsuario, @RequestParam String nuevaPassword) {
+    @PutMapping("/{idUsuario}/password")
+    public ResponseEntity<Usuario> changePassword(@PathVariable int idUsuario, @RequestBody PasswordDTO dto) {
         Optional<Usuario> optUsuario = this.usuarioService.getById(idUsuario);
         if (optUsuario.isPresent()) {
             Usuario usuario = optUsuario.get();
-            usuario.setPassword(nuevaPassword);
+            if(dto.getContrasenaVieja().equals(usuario.getPassword())) {
+            	usuario.setPassword(dto.getContrasenaNueva());
+            }
             return ResponseEntity.ok(this.usuarioService.save(usuario));
+            
         }
+           
         return ResponseEntity.notFound().build();
     }
 }

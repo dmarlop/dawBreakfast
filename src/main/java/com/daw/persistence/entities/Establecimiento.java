@@ -39,7 +39,7 @@ public class Establecimiento {
 	private double puntuacion;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "establecimiento", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "establecimiento")
 	private List<Desayuno> desayunos;
 
 }
