@@ -70,4 +70,20 @@ public class DesayunoController {
 		}
 		return ResponseEntity.ok(this.desayunoService.actualizarImagen(idDesayuno,imagen));
 	}
+	@GetMapping("/puntuacionAsc")
+	public ResponseEntity<List<Desayuno>> puntuacionAsc(){
+		return ResponseEntity.ok(this.desayunoService.findByPuntuacion());
+	}
+	@GetMapping("/puntuacionEstablecimiento")
+	public ResponseEntity<List<Desayuno>> puntuacionEstablecimiento(@PathVariable int idEstablecimiento){
+		return ResponseEntity.ok(this.desayunoService.findByPuntuacionEstablecimiento(idEstablecimiento));
+	}
+	@GetMapping("/establecimiento")
+	public ResponseEntity<List<Desayuno>> establecimiento(@PathVariable int idEstablecimiento){
+		return ResponseEntity.ok(this.desayunoService.findByEstablecimiento(idEstablecimiento));
+	}
+	@GetMapping("/precioEstablecimiento")
+	public ResponseEntity<List<Desayuno>> precioEstablecimiento(@PathVariable int idEstablecimiento){
+		return ResponseEntity.ok(this.desayunoService.findByPrecioEstablecimiento(idEstablecimiento));
+	}
 }
